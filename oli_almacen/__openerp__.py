@@ -37,6 +37,8 @@
 
     # always loaded
     'data': [
+        'security/almacen_group.xml',
+        'security/ir.model.access.csv',
         'views/almacen.xml',
         'producto.xml',
     ],

@@ -37,6 +37,8 @@
 
     # always loaded
     'data': [
+        'security/hhrr_group.xml',
+        'security/ir.model.access.csv',
         'views/hhrr.xml',
         'empleado.xml',
         'empleado_data.xml',

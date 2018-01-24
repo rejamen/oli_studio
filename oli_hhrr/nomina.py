@@ -34,3 +34,5 @@ class nomina_nomina(models.Model):
         'fecha': fields.Date.today,
     }
 
+    _order="fecha desc"
+

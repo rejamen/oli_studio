@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_conteo, Model admin access,model_conteo_conteo,oli_contabilidad.group_manager,1,1,1,1
+user_conteo, Model admin access,model_conteo_conteo,oli_contabilidad.group_user,1,0,0,0
+
+admin_cuenta_pagada, Model admin access,model_cuenta_pagada,oli_contabilidad.group_manager,1,1,1,1
+user_cuenta_pagada, Model admin access,model_cuenta_pagada,oli_contabilidad.group_user,1,0,0,0
+
+admin_cuenta_pagar, Model admin access,model_cuenta_pagar,oli_contabilidad.group_manager,1,1,1,1
+user_cuenta_pagar, Model admin access,model_cuenta_pagar,oli_contabilidad.group_user,1,0,0,0
+
+admin_gasto, Model admin access,model_gasto_gasto,oli_contabilidad.group_manager,1,1,1,1
+user_gasto, Model admin access,model_gasto_gasto,oli_contabilidad.group_user,1,0,0,0
+
+admin_plazo_pago, Model admin access,model_plazo_pago,oli_contabilidad.group_manager,1,1,1,1
+user_plazo_pago, Model admin access,model_plazo_pago,oli_contabilidad.group_user,1,0,0,0
+

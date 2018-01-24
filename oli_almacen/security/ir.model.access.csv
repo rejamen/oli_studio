@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_producto, Model admin access,model_producto_producto,oli_almacen.group_manager,1,1,1,1
+user_producto, Model user access,model_producto_producto,oli_almacen.group_user,1,0,0,0
+
+admin_udad_medida, Model admin access,model_unidad_medida,oli_almacen.group_manager,1,1,1,1
+user_udad_medida, Model user access,model_unidad_medida,oli_almacen.group_user,1,0,0,0

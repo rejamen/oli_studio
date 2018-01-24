@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_empleado, Model admin access,model_empleado_empleado,oli_hhrr.group_manager,1,1,1,1
+admin_user, Model admin access,model_empleado_empleado,oli_hhrr.group_user,1,0,0,0
+
+admin_nomina, Model admin access,model_nomina_nomina,oli_hhrr.group_manager,1,1,1,1
+user_nomina, Model admin access,model_nomina_nomina,oli_hhrr.group_user,1,0,0,0
+
+admin_cobros_pendientes, Model admin access,model_cobros_pendientes_line,oli_hhrr.group_manager,1,1,1,1
+user_cobros_pendientes, Model admin access,model_cobros_pendientes_line,oli_hhrr.group_user,1,0,0,0
+

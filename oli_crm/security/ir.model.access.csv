@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+admin_cliente, Model admin access,model_cliente_cliente,oli_crm.group_manager,1,1,1,1
+user_cliente, Model admin access,model_cliente_cliente,oli_crm.group_user,1,0,0,0
+
+admin_historial_cliente, Model admin access,model_historial_cliente,oli_crm.group_manager,1,1,1,1
+user_historial_cliente, Model admin access,model_historial_cliente,oli_crm.group_user,1,0,0,0
+
+
+

@@ -37,6 +37,8 @@
 
     # always loaded
     'data': [
+        'security/crm_group.xml',
+        'security/ir.model.access.csv',
         'views/crm.xml',
         'cliente.xml',
     ],

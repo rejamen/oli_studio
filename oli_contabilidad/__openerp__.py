@@ -37,6 +37,8 @@
 
     # always loaded
     'data': [
+        'security/contabilidad_group.xml',
+        'security/ir.model.access.csv',
         'views/contabilidad.xml',
         'cuenta_pagar.xml',
         'cuenta_pagar_data.xml',

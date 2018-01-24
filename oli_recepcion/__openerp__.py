@@ -37,6 +37,8 @@
 
     # always loaded
     'data': [
+        'security/recepcion_group.xml',
+        'security/ir.model.access.csv',
         'wizard/wizard.xml',
         'views/recepcion.xml',
         'report/contrato_report.xml',
