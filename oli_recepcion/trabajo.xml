@@ -32,7 +32,7 @@
 
           <field name="total_propina" sum="Total propinas"/>
           <field name="fecha"/>
-          <field name="tipo_trabajo"/>
+          <field name="user_id"/>
 
           <field name="state"/>
 
@@ -71,6 +71,7 @@
 
               <group>
                 <group string="Otros datos">
+                  <field name="user_id" invisible="1"/>
                   <field name="cliente" attrs="{'readonly': [('state','=','done')]}"/>
                   <field name="control_stock" attrs="{'readonly': [('state','=','done')]}"/>
                 </group>

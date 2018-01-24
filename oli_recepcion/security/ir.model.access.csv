@@ -2,8 +2,14 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 admin_balance_diario, Model admin access,model_balance_diario,oli_recepcion.group_manager,1,1,1,1
 user_balance_diario, Model admin access,model_balance_diario,oli_recepcion.group_user,1,0,0,0
 
+admin_balance_diario_line, Model admin access,model_balance_diario_line,oli_recepcion.group_manager,1,1,1,1
+user_balance_diario_line, Model admin access,model_balance_diario_line,oli_recepcion.group_user,1,0,0,0
+
 admin_balance_semanal, Model admin access,model_balance_semanal,oli_recepcion.group_manager,1,1,1,1
 user_balance_semanal, Model admin access,model_balance_semanal,oli_recepcion.group_user,1,0,0,0
+
+admin_balance_semanal_line, Model admin access,model_balance_semanal_line,oli_recepcion.group_manager,1,1,1,1
+user_balance_semanal_line, Model admin access,model_balance_semanal_line,oli_recepcion.group_user,1,0,0,0
 
 admin_encargo, Model admin access,model_encargo_encargo,oli_recepcion.group_manager,1,1,1,1
 user_encargo, Model admin access,model_encargo_encargo,oli_recepcion.group_user,1,0,0,0
@@ -13,10 +19,6 @@ user_pedido_encargo, Model admin access,model_pedido_encargo_line,oli_recepcion.
 
 admin_pago_encargo, Model admin access,model_pagos_encargo_line,oli_recepcion.group_manager,1,1,1,1
 user_pago_encargo, Model admin access,model_pagos_encargo_line,oli_recepcion.group_user,1,0,0,0
-
-
-
-
 
 admin_nota, Model admin access,model_nota_nota,oli_recepcion.group_manager,1,1,1,1
 user_nota, Model admin access,model_nota_nota,oli_recepcion.group_user,1,0,0,0
@@ -29,6 +31,14 @@ user_tasa, Model admin access,model_tasa_cambiaria,oli_recepcion.group_user,1,0,
 
 admin_trabajo, Model admin access,model_trabajo_trabajo,oli_recepcion.group_manager,1,1,1,1
 user_trabajo, Model admin access,model_trabajo_trabajo,oli_recepcion.group_user,1,0,0,0
+
+admin_materiales_trabajo, Model admin access,model_materiales_trabajo_line,oli_recepcion.group_manager,1,1,1,1
+user_materiales_trabajo, Model admin access,model_materiales_trabajo_line,oli_recepcion.group_user,1,0,0,0
+
+admin_notas_trabajo, Model admin access,model_notas_trabajo_line,oli_recepcion.group_manager,1,1,1,1
+user_notas_trabajo, Model admin access,model_notas_trabajo_line,oli_recepcion.group_user,1,0,0,0
+
+
 
 
 

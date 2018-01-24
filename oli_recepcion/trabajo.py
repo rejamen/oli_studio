@@ -50,6 +50,9 @@ class trabajo_trabajo(models.Model):
             res.append((e['id'],name))
         return res
 
+    def _get_user(self, cr, uid, ids, context=None):
+        return uid
+        
 
     name = fields.Many2one('predefinida.predefinida', 'Nombre')
     unidades = fields.Integer('Unidades', default=1, help="Indica la cantidad de unidades de este trabajo. Por ejemplo, en un trabajo de impresion, este dato representa la cantidad de hojas impresas.")
@@ -82,8 +85,11 @@ class trabajo_trabajo(models.Model):
 
     fecha = fields.Date('Fecha', help="Fecha en que se realiza el trabajo.")
 
+    user_id = fields.Many2one('res.users', 'Usuario')
+
     _defaults={
         'fecha': fields.Date.today,
+        'user_id': _get_user,
     }
 
     _order="fecha desc"

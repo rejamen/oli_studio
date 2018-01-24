@@ -29,6 +29,7 @@
           <field name="fecha"/>
           <field name="importe_mn" sum="Importe MN"/>
           <field name="importe_cuc" sum="Equivalente CUC"/>
+          <field name="user_id"/>
           <field name="state"/>
 
         </tree>
@@ -56,6 +57,9 @@
                 <group string="Datos del balance">
                   <field name="fecha" required="1" attrs="{'readonly': [('state','=', 'done')]}"/>
                   <field name="fondo_caja" attrs="{'readonly': [('state','=', 'done')]}"/>
+
+                  <field name="user_id" invisible="1"/>
+
                 </group>
 
                 <group string="Ingresos del día">

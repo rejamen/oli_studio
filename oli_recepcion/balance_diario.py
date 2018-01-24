@@ -158,6 +158,9 @@ class balance_diario(models.Model):
             dia = dias[aux.weekday()]
             record.update({'dia_str': dia})
 
+    def _get_user(self, cr, uid, ids, context=None):
+        return uid
+
     fecha = fields.Date('Fecha')
     dia_str = fields.Char('Dia semana', compute='_get_dia_str')
     fondo_caja = fields.Float('Fondo de caja (MN)', help="Indica el fondo en caja para movimientos financieros del dia. Es un dinero extra existente para cambios u otras eventualidades.")
@@ -170,8 +173,6 @@ class balance_diario(models.Model):
 
     error = fields.Boolean('Error')
 
-
-
     balance_lines = fields.One2many('balance.diario.line', 'balance_diario_id', 'Balance Diario Line')
 
     state = fields.Selection([
@@ -179,9 +180,12 @@ class balance_diario(models.Model):
         ('done', 'Archivado'),
         ], 'Estado', default='draft', help="Un balance diario pasa a Archivado cuando se realiza el balance semanal que lo contiene.")
 
+    user_id = fields.Many2one('res.users', 'Usuario')
+
     _defaults={
         'fecha': fields.Date.today,
         'fondo_caja': 0,
+        'user_id': _get_user,
     }
 
     _order="fecha desc"
