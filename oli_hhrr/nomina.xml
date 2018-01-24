@@ -1,0 +1,76 @@
+<openerp>
+  <data>
+
+    <record id="nominas_search" model="ir.ui.view">
+        <field name="name">nominas.search</field>
+        <field name="model">nomina.nomina</field>
+        <field name="arch" type="xml">
+            <search string="Nominas">
+
+              <field name="empleado_id"/>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="nominas_list">
+      <field name="name">nominas.list</field>
+      <field name="model">nomina.nomina</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="empleado_id"/>
+          <field name="total" sum="Total"/>
+          <field name="fecha"/>
+        </tree>
+      </field>
+    </record>
+
+    
+    <!-- form view -->
+    <record model="ir.ui.view" id="nomina_form">
+      <field name="name">nomina.form</field>
+      <field name="model">nomina.nomina</field>
+      <field name="arch" type="xml">
+
+          <form string="nomina">
+
+            <header>
+            </header>
+            
+            <sheet>
+
+                        <div class="oe_title">
+                            <label for="empleado_id" class="oe_edit_only"/>
+                            <h1>
+                                <field name="empleado_id"/>
+                            </h1>
+                            <label for="total" class="oe_edit_only"/>
+                            <h1>$<field name="total" class="oe_inline"/></h1>
+                            <field name="fecha"/>
+                        </div>
+	          </sheet>
+          
+          </form>
+        </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="nomina_action_window">
+      <field name="name">Nominas</field>
+      <field name="res_model">nomina.nomina</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    
+    <!-- menu categories -->
+    <menuitem name="Gestionar nominas" id="menu_nominas" parent="empleados_menu_root"  sequence="103"/>
+    
+    <menuitem name="Nominas" id="menu_nominas_datos" parent="menu_nominas"
+              action="nomina_action_window"/>
+
+    
+
+  </data>
+</openerp>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="cuentas_pagadas_list">
+      <field name="name">cuentas.pagadas.list</field>
+      <field name="model">cuenta.pagada</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+
+          <field name="name"/>
+          <field name="importe" sum="Importe"/>
+          <field name="fecha_inicio" string="Fecha creación"/>
+          <field name="fecha_fin"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="cuenta_pagada_form">
+      <field name="name">cuenta.pagada.form</field>
+      <field name="model">cuenta.pagada</field>
+      <field name="arch" type="xml">
+        <form string="Cuenta pagada" create="false">
+          <header>
+            <div>
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+                  
+              <h1><field name="name" nolabel="1" readonly="1"/></h1>
+              <h1>$ <field name="importe" nolabel="1" readonly="1" class="oe_inline"/></h1>
+
+            <group>
+              <group string="Fechas importantes">
+                <field name="fecha_inicio" readonly="1" string="Fecha creación"/>
+                <field name="fecha_fin" readonly="1"/>
+              </group>
+            </group>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cuenta_pagada_action_window">
+      <field name="name">Cuenta pagada</field>
+      <field name="res_model">cuenta.pagada</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Cuentas pagadas" id="menu_cuentas_pagadas_datos" parent="menu_cuentas"
+              action="cuenta_pagada_action_window"/>
+
+	</data>
+</openerp>

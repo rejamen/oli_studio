@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="predefinidas_list">
+      <field name="name">predefinida.list</field>
+      <field name="model">predefinida.predefinida</field>
+      <field name="arch" type="xml">
+        <tree create="true">
+
+          <field name="name"/>
+          <field name="costo"/>
+          <field name="control_stock"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="predefinida_form">
+      <field name="name">predefinida.form</field>
+      <field name="model">predefinida.predefinida</field>
+      <field name="arch" type="xml">
+        <form string="Trabajo predefinido" create="false">
+          <header>
+            <div>
+            </div>
+          </header>
+
+          <sheet>
+                  
+              <h1><field name="name" nolabel="1" placeholder="trabajo"/></h1>
+              <h1>$ <field name="costo" nolabel="1" placeholder="costo CUP" class="oe_inline"/> MN</h1>
+              <group><field name="control_stock"/></group>
+
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="predef_action_window">
+      <field name="name">Predefinidas</field>
+      <field name="res_model">predefinida.predefinida</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+       
+    <!-- menu categories -->
+    <menuitem name="Trabajos predefinidos" id="menu_predefinidas_datos" parent="configuracion_menu"  sequence="103" action="predef_action_window"/>
+    
+	</data>
+</openerp>

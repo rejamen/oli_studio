@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="hhrr assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/oli_hhrr/static/src/css/hhrr.css"/>
+                <script type="text/javascript" src="/oli_hhrr/static/src/js/hhrr.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

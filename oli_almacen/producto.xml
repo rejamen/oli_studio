@@ -1,0 +1,179 @@
+<openerp>
+  <data>
+
+    <record id="productos_search" model="ir.ui.view">
+        <field name="name">productos.search</field>
+        <field name="model">producto.producto</field>
+        <field name="arch" type="xml">
+            <search string="Alertas">
+
+              <field name="name"/>
+
+              <filter name="mis_alertas" string="Alertas"
+                  domain="[('alerta', '=', 'True')]"/>
+
+              <filter name="uso_diario" string="Uso diario"
+                  domain="[('ubicacion', '=', 'diario')]"/>
+
+              <filter name="reserva" string="Reserva"
+                  domain="[('ubicacion', '=', 'reserva')]"/>
+
+
+            </search>
+        </field>
+    </record>
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="productos_list">
+      <field name="name">productos.list</field>
+      <field name="model">producto.producto</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="stock"/> 
+          <field name="unidad"/> 
+          <field name="ubicacion" string="Ubicación"/>
+
+        </tree>
+      </field>
+    </record>
+
+    
+    <!-- form view -->
+    <record model="ir.ui.view" id="producto_form">
+      <field name="name">producto.form</field>
+      <field name="model">producto.producto</field>
+      <field name="arch" type="xml">
+
+          <form string="Producto">
+
+          	<header>
+                <!-- <div>
+                    <field name="tipo" widget="statusbar"/>
+                </div>
+                <div class="oe_clear"/> -->
+            </header>
+            
+            <sheet>
+
+                  <div><button name="header_button" type="object" class="oe_producto_header_verde" attrs="{'invisible': [('alerta','=',True)]}"/></div>
+
+                  <div><button name="header_button" type="object" class="oe_producto_header_rojo" attrs="{'invisible': [('alerta','=',False)]}"/></div>
+                  
+                  <group>
+                    <h1><field name="name" placeholder="nombre del producto" nolabel="1"/></h1>
+                  </group>
+
+                  
+
+                  <group>
+                    
+                    <group string="Información adicional">
+                        <field name="ubicacion" string="Ubicación"/>
+                        <label for="stock"/>
+                        <div><field name="stock" class="oe_inline"/><field name="unidad" class="oe_inline"/></div>
+                        <field name="costo"/>
+                    </group>
+
+                    <group string="Alerta sobre stock">
+                        <field name="total_alerta"/>
+                        <field name="alerta" invisible="1"/>
+                        <field name="color" invisible="1"/>
+
+                    </group>
+
+                  </group>
+
+                  <group>
+                    <group string="Movimientos de stock">
+                      <div><button name="ingresar" type="object" string="Ingresar" class="oe_stat_button" icon="fa-plus"/></div> <h1><field name="total_in" nolabel="1"/></h1>
+
+                      <div><button name="extraer" type="object" string="Extraer" class="oe_stat_button" icon="fa-minus"/></div> <h1><field name="total_out" nolabel="1"/></h1>
+                    </group>
+
+                    <group string="Notas relevantes">
+                      <field name="description" nolabel="1"/>
+                    </group>
+                  </group>
+
+            </sheet>
+          </form>
+        </field>
+    </record>
+
+
+    <!-- KANBAN VIEW -->
+    <record model="ir.ui.view" id="productos_kanban">
+        <field name="name">Productos Kanban</field>
+        <field name="model">producto.producto</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <kanban class="o_almacen_main">
+
+              <field name="color"/>
+
+                <templates>
+                   <t t-name="kanban-box">
+                    <div class="o_producto_card oe_kanban_global_click">
+
+                        <div class="oe_kanban_details">
+                            <strong>
+                                <field name="name"/> 
+                            </strong>
+                            <ul>
+                                <li><field name="stock"/> <field name="unidad"/></li>
+                            </ul>
+
+                            <div t-attf-class="o_alerta_color_#{kanban_getcolor(record.color.raw_value)}"/>
+
+                        </div>
+                    </div>
+                   </t>
+                </templates>
+            </kanban>
+
+        </field>
+      </record>
+    
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="productos_diario_action_window">
+      <field name="name">Uso diario</field>
+      <field name="res_model">producto.producto</field>
+      <field name="view_mode">kanban,form,tree</field>
+      <field name="search_view_id" ref="productos_search"/>
+      <field name="context">{'search_default_uso_diario':1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="productos_reserva_action_window">
+      <field name="name">Reserva</field>
+      <field name="res_model">producto.producto</field>
+      <field name="view_mode">kanban,form,tree</field>
+      <field name="search_view_id" ref="productos_search"/>
+      <field name="context">{'search_default_reserva':1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="unidades_medida_action_window">
+      <field name="name">Unidades de medida</field>
+      <field name="res_model">unidad.medida</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Almacén" id="almacen_menu_root" sequence="21"/>
+    
+    <!-- menu categories -->
+    <menuitem name="Gestionar productos" id="menu_productos" parent="almacen_menu_root"  sequence="103"/>
+    
+    <menuitem name="Uso diario" id="menu_productos_diario_datos" parent="menu_productos"
+              action="productos_diario_action_window"/>
+
+    <menuitem name="Reserva" id="menu_productos_reserva_datos" parent="menu_productos"
+              action="productos_reserva_action_window"/>
+
+    <menuitem name="Configuración" id="menu_configuracion" parent="almacen_menu_root"  sequence="104"/>
+    
+    <menuitem name="Unidades de medida" id="menu_unidades_medida_datos" parent="menu_configuracion" action="unidades_medida_action_window"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="tasa_cambiaria_list">
+      <field name="name">tasa.cambiaria.list</field>
+      <field name="model">tasa.cambiaria</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+
+          <field name="cup"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="tasa_cambiaria_form">
+      <field name="name">tasa.cambiaria.form</field>
+      <field name="model">tasa.cambiaria</field>
+      <field name="arch" type="xml">
+        <form string="Tasa de cambio" create="false">
+          <header>
+            <div>
+            </div>
+          </header>
+
+          <sheet>
+                  
+              <h1>1 CUC = <field name="cup" nolabel="1" class="oe_inline"/> CUP</h1>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="tasa_cambiaria_action_window">
+      <field name="name">Tasa de cambio</field>
+      <field name="res_model">tasa.cambiaria</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+       
+    <!-- menu categories -->
+    <menuitem name="Tasa de cambio" id="menu_tasa_datos" parent="configuracion_menu"  sequence="104" action="tasa_cambiaria_action_window"/>
+    
+	</data>
+</openerp>

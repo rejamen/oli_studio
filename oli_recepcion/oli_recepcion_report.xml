@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<report
+      id="contrato_report_id"
+      model="encargo.encargo"
+      string="Contrato de encargos"
+      report_type="qweb-pdf"
+      name="oli_recepcion.contrato_encargo"
+      file="oli_recepcion.contrato_encargo"
+    />
+    
+	</data>
+</openerp>

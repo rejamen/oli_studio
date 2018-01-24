@@ -1,0 +1,375 @@
+.o_seguimiento_main{
+  /*padding-right: 10px;*/
+}
+
+.oe_separator{
+  height: 10px;
+}
+
+.o_seguimiento_card{
+  margin-bottom: 4px;
+  position: relative;
+  display: block;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  display: block;
+  border-radius: 4px;
+}
+
+.o_seguimiento_8{ /*verde*/
+  background-color: #4FDB66;
+   
+}
+
+.o_seguimiento_9{ /*naranja*/
+  background-color: #F3A961;
+
+}
+
+.o_seguimiento_0{ /*rojo*/
+  background-color: #F81E1E;
+
+}
+
+.o_seguimiento_1{ /*azul*/
+  background-color: #88C8C9;
+
+}
+
+.o_seguimiento_2{ /*amarillo*/
+  background-color: #F3EB4D;
+
+}
+
+.oe_button_seguimiento_container .oe_stat_button{
+  width: 166px !important;
+  padding-left: 5px;
+}
+
+.oe_button_seguimiento_container .oe_stat_button_disabled{
+  width: 166px !important;
+  padding-left: 0px;
+}
+
+.oe_button_color_container{
+  padding-left: 3px;
+
+}
+
+.oe_stat_button_disabled{
+  background-color: #EFEFEF;
+  font-weight: normal;
+  width: 132px !important;
+  height: 40px;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #EFEFEF !important;
+  border-right-color: #EFEFEF !important;
+  border-bottom-color: #EFEFEF !important;
+  border-left-color: #EFEFEF !important;
+
+  background-image: none !important;
+
+  margin-top: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 0px !important;
+
+  vertical-align: middle;
+  padding: 0;
+  line-height: 120%;
+
+}
+
+.oe_button_color_container .oe_stat_button{
+  width: 16% !important;
+  padding-left: 40px;
+}
+
+
+.oe_seguimiento_header_verde{
+  background: #4FDB66 !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #4FDB66 !important;
+  border-right-color: #4FDB66 !important;
+  border-bottom-color: #4FDB66 !important;
+  border-left-color: #4FDB66 !important;
+
+  background-image: none !important;
+}
+
+.oe_button_container .oe_seguimiento_header_verde
+{
+  width: 100%;
+}
+
+.oe_seguimiento_header_naranja{
+  background-color: #F3A961 !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #F3A961 !important;
+  border-right-color: #F3A961 !important;
+  border-bottom-color: #F3A961 !important;
+  border-left-color: #F3A961 !important;
+
+  background-image: none !important;
+}
+
+.oe_button_container .oe_seguimiento_header_naranja
+{
+  width: 100%;
+}
+
+.oe_seguimiento_header_rojo{
+  background-color: #F81E1E !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #F81E1E !important;
+  border-right-color: #F81E1E !important;
+  border-bottom-color: #F81E1E !important;
+  border-left-color: #F81E1E !important; 
+
+  background-image: none !important;
+}
+
+.oe_button_container .oe_seguimiento_header_rojo
+{
+  width: 100%;
+}
+
+.oe_seguimiento_header_azul{
+  background-color: #88C8C9 !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #88C8C9 !important;
+  border-right-color: #88C8C9 !important;
+  border-bottom-color: #88C8C9 !important;
+  border-left-color: #88C8C9 !important; 
+
+  background-image: none !important;
+}
+
+.oe_button_container .oe_seguimiento_header_azul
+{
+  width: 100%;
+}
+
+.oe_seguimiento_header_amarillo{
+  background-color: #F3EB4D !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #F3EB4D !important;
+  border-right-color: #F3EB4D !important;
+  border-bottom-color: #F3EB4D !important;
+  border-left-color: #F3EB4D !important; 
+
+  background-image: none !important;
+}
+
+.oe_button_container .oe_seguimiento_header_amarillo
+{
+  width: 100%;
+}
+
+.oe_seguimiento_header_negro{
+  background-color: #000000 !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #000000 !important;
+  border-right-color: #000000 !important;
+  border-bottom-color: #000000 !important;
+  border-left-color: #000000 !important; 
+
+  background-image: none !important;
+}
+
+.oe_seguimiento_header_blanco{
+  background-color: #EEEEEE !important;
+  height: 2px;
+  margin: 0px !important;
+  width: 96%;
+  box-shadow: none !important; 
+
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  
+  border-top-color: #EEEEEE !important;
+  border-right-color: #EEEEEE !important;
+  border-bottom-color: #EEEEEE !important;
+  border-left-color: #EEEEEE !important; 
+
+  background-image: none !important;
+}
+
+.o_expediente_main{
+}
+.o_expediente_main .oe_kanban_record{
+  border: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+.o_expediente_main .oe_kanban_column_cards{
+  padding-right: 2px;
+}
+
+.o_expediente_active{
+  color: red;
+  width: 100%;
+}
+
+.o_expediente_done{
+  color: gray;
+}
+
+.group_label_button{
+  border: 1px solid #d5d5d5;
+  border-top-color: rgba(0, 0, 0, 0.5);
+  border-right-color: rgba(0, 0, 0, 0.5);
+  border-bottom-color: rgba(0, 0, 0, 0.5);
+  border-left-color: rgba(0, 0, 0, 0.5);
+
+  width: 30%;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.group_label_button .oe_stat_button{
+  /*padding-left: 15px;*/
+  width: 100% !important;
+  text-align: center !important;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(0, 0, 0, 0);
+  margin: 0px 0px 0px 0px;
+  height: 30px;
+
+}
+
+.group_label_button .oe_stat_button > div{
+  text-align: center !important;
+  display: inline-block;
+
+}
+
+.group_label_button .oe_form_field{
+  font-style: bold;
+}
+.group_3_buttons{
+  /*background-color: #000000;*/
+}
+
+.oe_nombre_expediente{
+  font-size: 1em !important;
+  font-weight: bold !important;
+}
+
+.o_font_rojo{ /*rojo*/
+  color: #F81E1E !important;
+
+}
+
+.o_font_verde{ /*verde*/
+  color: #05941c !important;
+
+}
+
+.openerp .oe_list_content > tbody > tr > td > button.btn_txt, .openerp .oe_list_content > tbody > tr > th > button.btn_txt {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background: #F81E1E;
+  padding: 3px 12px;
+}
+
+.div_buttons_line{
+  background: gray;
+  height: 2px;
+  margin-bottom: 10px;
+
+}
+
+.report_header{
+  border: 1px solid #d5d5d5;
+  border-top-color: rgba(0, 0, 0, 0.5);
+  border-right-color: rgba(0, 0, 0, 0.5);
+  border-bottom-color: rgba(0, 0, 1, 0.5);
+  border-left-color: rgba(0, 0, 0, 0.5);
+}
+
+.cuadro{
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  height: 50px;
+}
+
+.group_print_buttons{
+  margin-left: 10px;
+  margin-bottom: 10px;
+  text-align: center !important;
+  
+}
+
+.group_print_buttons .oe_stat_button{
+  padding-left: 15px;
+  width: 25% !important;
+  text-align: center !important;
+  margin: 0px 0px 0px 0px;
+
+}

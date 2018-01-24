@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <!--<record id="balances_semana_search" model="ir.ui.view">
+        <field name="name">balances.semana.search</field>
+        <field name="model">balance.semanal</field>
+        <field name="arch" type="xml">
+            <search string="Analisis del mes">
+
+
+              <filter name="este_mes" string="Este mes"
+                  domain="[('fecha_inicio','&lt;',(context_today()+relativedelta(months=1)).strftime('%Y-%m-%d 23:59:59')),('fecha_inicio','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+
+
+            </search>
+        </field>
+    </record> -->
+
+    <!-- list view -->
+    <record model="ir.ui.view" id="balances_semanales_list">
+      <field name="name">balances.semanales.list</field>
+      <field name="model">balance.semanal</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:state == 'draft';gray:state == 'done';">
+
+          <field name="fecha_inicio"/>
+          <field name="fecha_fin"/>
+
+          <field name="importe_mn" sum="Importe MN"/>
+          <field name="importe_cuc" sum="Equivalente CUC"/>
+
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="balance_semanal_form">
+      <field name="name">balance.semanal.form</field>
+      <field name="model">balance.semanal</field>
+      <field name="arch" type="xml">
+        <form string="Balance semanal" create="true">
+          <header>
+            <div>
+              
+              <field name="state" widget="statusbar"/>
+
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+                Desde <field name="fecha_inicio" on_change="onchange_fecha_inicio(fecha_inicio)" attrs="{'readonly': [('state','=', 'done')]}" class="oe_inline"/> hasta <field name="fecha_fin" attrs="{'readonly': [('state','=', 'done')]}" class="oe_inline" on_change="onchange_fecha_fin(fecha_fin)"/>
+
+                <div class="oe_separator"/>
+
+              
+              <group>
+                <group>
+                  <div>
+                    <button name="realizar_balance_semanal" type="object" string="Analizar" class="oe_stat_button" icon="fa-search" states="draft"/>
+
+                    <button name="confirmar" type="object" string="Archivar" class="oe_stat_button" icon="fa-bars" states="draft"/>
+                  </div>
+                </group>
+
+                <group string="Ingresos de la semana">
+                  <field name="total_mn" attrs="{'readonly': [('state','=', 'done')]}"/>
+                  <field name="total_cuc" attrs="{'readonly': [('state','=', 'done')]}"/>
+                </group>
+              </group>
+
+              <field name="importe_mn" invisible="1"/>
+              <field name="importe_cuc" invisible="1"/>
+              <field name="error" invisible="1"/>
+
+
+            <notebook>
+              <page string="Resultados del balance">
+                <field name="balance_lines" attrs="{'readonly': [('state','=', 'done')]}">
+                  <tree editable="top" delete="0">
+                    <field name="name" string="Descripción"/>
+                    <field name="descripcion"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="balance_semanal_action_window">
+      <field name="name">Balance semanal</field>
+      <field name="res_model">balance.semanal</field>
+      <field name="view_mode">tree,form</field>
+      <!-- <field name="search_view_id" ref="balances_semana_search"/>
+      <field name="context">{'search_default_este_mes':1}</field> -->
+    </record>
+
+    <menuitem name="Balance semanal" id="menu_balance_semanal_datos" parent="menu_trabajos"
+              action="balance_semanal_action_window"/>
+
+  </data>
+</openerp>

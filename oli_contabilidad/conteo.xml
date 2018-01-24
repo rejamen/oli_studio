@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="conteo_conteo_list">
+      <field name="name">conteo.conteo.list</field>
+      <field name="model">conteo.conteo</field>
+      <field name="arch" type="xml">
+        <tree create="true">
+
+          <field name="fecha"/>
+          <field name="total_mn" sum="Importe"/>
+          <field name="total_cuc" sum="Importe"/>
+
+          <field name="equivalente_mn" sum="Importe"/>
+          <field name="equivalente_cuc" sum="Importe"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="conteo_form">
+      <field name="name">conteo.conteo.form</field>
+      <field name="model">conteo.conteo</field>
+      <field name="arch" type="xml">
+        <form string="Conteo de valores" create="true">
+          <header>
+            <div>
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+
+          		<field name="fecha" invisible="1"/>
+              <!-- <field name="fecha_prueba" invisible="0"/> -->
+
+              <!-- <field name="week" invisible="0"/> -->
+
+          		
+          		<div>
+	          		<div style="float:left;width:50%;">
+	                	<div  style="color:#7C7BAD;font-weight:bold;font-size:2em;">Valores CUC</div>
+		                <h1><div>$0.05 x <field name="cinco_cents_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$0.10 x <field name="diez_cents_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$0.25 x <field name="veinticinco_cents_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$0.50 x <field name="cincuenta_cents_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$1 x <field name="un_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$3 x <field name="tres_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$5 x <field name="cinco_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$10 x <field name="diez_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$20 x <field name="veinte_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$50 x <field name="cincuenta_cuc" class="oe_inline"/></div></h1>
+		                <h1><div>$100 x <field name="cien_cuc" class="oe_inline"/></div></h1>
+	                </div>
+
+	                <div style="float:left;width:50%;">
+	                	<div style="color:#7C7BAD;font-weight:bold;font-size:2em;">Valores MN</div>
+		                <h1><div>$1 x <field name="un_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$3 x <field name="tres_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$5 x <field name="cinco_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$10 x <field name="diez_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$20 x <field name="veinte_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$50 x <field name="cincuenta_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$100 x <field name="cien_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$200 x <field name="doscientos_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$500 x <field name="quinientos_mn" class="oe_inline"/></div></h1>
+		                <h1><div>$1000 x <field name="mil_mn" class="oe_inline"/></div></h1>
+	                </div>
+	            </div>
+
+                <group class="oe_subtotal_footer oe_right">
+                  
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="total_mn"/>
+                  </div>
+                  
+                  <field name="total_mn" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="total_cuc"/>
+                  </div>
+                  
+                  <field name="total_cuc" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="equivalente_mn"/>
+                  </div>
+                  
+                  <field name="equivalente_mn" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+                  
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="equivalente_cuc"/>
+                  </div>
+                  
+                  <field name="equivalente_cuc" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+
+                
+                </group>
+
+                <div class="oe_clear"/>
+            
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="conteo_conteo_action_window">
+      <field name="name">Conteo de valores</field>
+      <field name="res_model">conteo.conteo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- menu categories -->
+    <menuitem name="Conteo de valores" id="menu_conteo" parent="menu_cuentas"  sequence="104" action="conteo_conteo_action_window"/>
+
+    <!-- <menuitem name="Cuentas pagadas" id="menu_cuentas_pagadas_datos" parent="menu_cuentas" -->
+              <!-- action="cuenta_pagada_action_window"/> -->
+    
+	</data>
+</openerp>

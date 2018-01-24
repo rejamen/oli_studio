@@ -1,0 +1,191 @@
+<openerp>
+  <data>
+
+    <record id="clientes_search" model="ir.ui.view">
+        <field name="name">clientes.search</field>
+        <field name="model">cliente.cliente</field>
+        <field name="arch" type="xml">
+            <search string="Clientes">
+                <field name="tipo" string="Tipo" filter_domain="[('tipo','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- explicit list view definition -->
+    <!-- <record model="ir.ui.view" id="necesidades_clientes_list">
+      <field name="name">necesidades.clientes.list</field>
+      <field name="model">necesidades.cliente</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="fecha"/>
+          <field name="cliente_id"/>
+          <field name="product_id"/> 
+        </tree>
+      </field>
+    </record> -->
+
+    <!-- <record model="ir.ui.view" id="necesidad_cliente_form">
+      <field name="name">necesidad.cliente.form</field>
+      <field name="model">necesidades.cliente</field>
+      <field name="arch" type="xml">
+
+          <form string="Necesidades">
+
+            <header>
+                <div>
+                            
+                </div>
+                <div class="oe_clear"/>
+            </header>
+            
+            <sheet>
+
+              <div class="oe_button_box" name="button_box">
+
+                    <button name="eliminar_necesidad" string="Eliminar" type="object" class="oe_stat_button" icon="fa-remove"/>
+
+
+              </div>
+              
+              
+                  <h1><label for="cliente_id" string="Cliente:"/>
+                  <field name="cliente_id" class="oe_inline"/></h1>
+                  <h1><label for="product_id" string="Producto:"/>
+                  <field name="product_id" class="oe_inline"/></h1>
+                  <h1><label for="fecha" string="Fecha:"/>
+                  <field name="fecha" class="oe_inline"/></h1>
+
+
+
+            </sheet>
+          </form>
+        </field>
+    </record> -->
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="cliente_form">
+      <field name="name">cliente.form</field>
+      <field name="model">cliente.cliente</field>
+      <field name="arch" type="xml">
+
+          <form string="Cliente">
+
+          	<header>
+                <div>
+                    <field name="tipo" widget="statusbar"/>
+                </div>
+                <div class="oe_clear"/>
+            </header>
+            
+            <sheet>
+
+                  <group>
+                    <!-- <h1><field name="name" placeholder="nombre y apellidos" class="oe_inline"/></h1> -->
+                    <h1><field name="name" placeholder="nombre y apellidos" nolabel="1"/></h1>
+                  </group>
+
+                  
+
+                  <group>
+                    
+                    <group string="Datos de Contacto">
+                        <field name="phone" string="Teléfono"/>
+                        <field name="mobile" string="Móvil"/>
+                        <field name="mail" string="e-mail" widget="email"/>
+                        <field name="address" string="Dirección"/>
+                        
+                        <field name="color" invisible="1"/>
+                        <field name="admin" invisible="1"/>
+
+
+                    </group>
+
+                    <group>
+                        <button type="object" name="set_vip" string="VIP" class="oe_stat_button" icon="fa-star" attrs="{'invisible': [('tipo','=','vip')]}"/>
+                        <button type="object" name="set_normal" string="Normal" class="oe_stat_button" icon="fa-remove" attrs="{'invisible': [('tipo','=','normal')]}"/>
+                    </group>
+
+                  </group>
+
+              	<notebook> 
+                    <page string="Historial del Cliente">
+                    	<field name="historial_line">
+                            <tree editable="top">
+                                <field name="fecha"/>   
+                                <field name="description" string="Descripción"/> 
+                                <field name="costo"/> 
+                            </tree>
+                        </field>
+
+                        <group class="oe_subtotal_footer oe_right">
+                          <label for="total_abonado"/>
+                          <field name="total_abonado" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+                        </group>
+
+                      <div class="oe_clear"/>
+
+                    </page>
+
+              </notebook>
+
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+
+      <!-- KANBAN VIEW -->
+      <record model="ir.ui.view" id="cliente_kanban">
+        <field name="name">Clientes Kanban</field>
+        <field name="model">cliente.cliente</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <kanban class="o_crm_main">
+
+          		<field name="color"/>
+
+                <templates>
+                   <t t-name="kanban-box">
+                    <div t-attf-class="o_crm_color_#{kanban_getcolor(record.color.raw_value)} o_crm_card oe_kanban_global_click">
+
+                        <div class="oe_kanban_details">
+                            <strong>
+                                <field name="name"/> 
+                            </strong>
+                            <ul>
+                                <li t-if="record.mobile.raw_value"><i class="fa fa-mobile"></i> <field name="mobile"/></li>
+                                <li t-if="record.phone.raw_value"><i class="fa fa-phone"></i> <field name="phone"/></li>
+                                <li t-if="record.mail.raw_value"><i class="fa fa-envelope"></i> <field name="mail"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                   </t>
+                </templates>
+            </kanban>
+
+        </field>
+    </record>
+    
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="cliente_action_window">
+      <field name="name">Listado de Clientes</field>
+      <field name="res_model">cliente.cliente</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Clientes" id="clientes_menu_root" sequence="21"/>
+    
+    <!-- menu categories -->
+    <menuitem name="Gestionar Clientes" id="menu_clientes" parent="clientes_menu_root"  sequence="103"/>
+    
+    <!-- actions -->
+    <menuitem name="Clientes" id="menu_clientes_datos" parent="menu_clientes"
+              action="cliente_action_window"/>
+
+    <!-- <menuitem name="Necesidades" id="menu_necesidades_clientes" parent="menu_clientes"
+              action="necesidades_clientes_action_window"/> -->
+    
+  </data>
+</openerp>

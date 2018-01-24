@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="empleado1" model="empleado.empleado">
+            <field name="name">Yanel</field>
+	    <field name="salario">50</field>
+            <field name="image" type="base64" file="oli_hhrr/static/img/yanel.jpg"/>
+        </record>
+
+        
+
+	<record id="empleado3" model="empleado.empleado">
+            <field name="name">Oli Studio</field>
+	    <field name="salario">50</field>
+            <field name="image" type="base64" file="oli_hhrr/static/img/oli.png"/>
+        </record>
+
+        
+
+    </data>
+
+    
+</openerp>

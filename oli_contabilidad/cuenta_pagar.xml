@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="cuentas_pagar_list">
+      <field name="name">cuentas.pagar.list</field>
+      <field name="model">cuenta.pagar</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:debe != 0;gray:debe == 0;">
+
+          <field name="name"/>
+          <field name="importe" sum="Importe"/>
+          <field name="pagado" sum="Pagado"/>
+          <field name="debe" sum="Debe"/>
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="cuenta_pagar_form">
+      <field name="name">cuenta.pagar.form</field>
+      <field name="model">cuenta.pagar</field>
+      <field name="arch" type="xml">
+        <form string="Cuenta por pagar" create="true">
+          <header>
+            <div>
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+            <!-- <div><button name="header_button" type="object" class="oe_seguimiento_header_verde" attrs="{'invisible': [('alerta','=',True)]}"/></div>
+
+            <div><button name="header_button" type="object" class="oe_seguimiento_header_rojo" attrs="{'invisible': [('alerta','=',False)]}"/></div> -->
+                  
+              <h1><field name="name" placeholder="nombre de la cuenta" nolabel="1"/></h1>
+              <h1>$ <field name="importe" placeholder="importe" nolabel="1" class="oe_inline"/></h1>
+
+            <group>
+              <group string="Estado de la cuenta">
+                <field name="pagado"/>
+                <field name="debe" readonly="1"/>
+              </group>
+                
+              <group string="Fecha creación">
+                <field name="fecha_creacion"/>
+                <field name="state"/>
+              </group>
+            </group>
+
+            <div>
+                  <button type="object" name="cuenta_pagada" class="oe_stat_button" icon="fa-close" string="Cuenta pagada" attrs="{'invisible': [('prioridad','=', 0)]}"/>
+                  
+                  <button type="object" name="reiniciar_cuenta" class="oe_stat_button" icon="fa-refresh" string="Reiniciar cuenta" attrs="{'invisible': [('prioridad','!=', 0)]}"/>
+            </div>
+
+              <field name="color" invisible="1"/>
+              <field name="state" invisible="1"/>
+              <field name="stage_id" invisible="1"/>
+              <field name="prioridad" invisible="1"/>
+
+            
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- KANBAN VIEW -->
+    <record model="ir.ui.view" id="cuenta_pagar_kanban_view">
+      <field name="name">cuenta.pagar.kanban.view</field>
+      <field name="model">cuenta.pagar</field>
+      <field name="arch" type="xml"> <!--edit="false" inhabilita drag & drop-->
+      	<kanban class="o_seguimiento_main" default_group_by="stage_id" edit="true" quick_create="false" create="true">
+
+          <field name="name"/>
+          <field name="importe"/>
+          <field name="pagado"/>
+          <field name="debe"/>
+          <field name="state"/>
+
+          <field name="prioridad"/>
+
+
+          <field name="stage_id"/>
+          <field name="color"/>
+
+            <templates>
+                <t t-name="kanban-box">
+                  <!-- <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"> -->
+                  <div t-attf-class="o_seguimiento_#{kanban_getcolor(record.color.raw_value)} o_seguimiento_card oe_kanban_global_click">
+
+                    <div class="oe_kanban_content">
+                      <div style="font-size:16px;"><b><field name="name"/></b></div>
+
+                      <li><b>Importe: </b><field name="importe"/></li>
+                      <li><b>Debe: </b><field name="debe"/></li>
+
+                      <!-- <div t-if="!record.debe.raw_value" class="o_cuenta_pagada">OK</div> -->
+                      <div t-if="!record.debe.raw_value" class="o_cuenta_pagada" style="font-size:30px;color:#F8FF19;">
+                        <i class="fa fa-star"></i>
+                      </div>
+
+
+
+                      <div class="oe_clear"></div>
+                    </div>
+
+                  </div>
+                  
+                 
+                </t>
+            </templates>
+        </kanban>
+       </field>
+    </record>
+
+    <record model="ir.ui.view" id="plazo_pago_form">
+      <field name="name">plazo.pago.form</field>
+      <field name="model">plazo.pago</field>
+      <field name="arch" type="xml">
+        <form string="Plazos de pago" create="true">
+          <header>
+            <div>
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+            <group>
+              <group>
+                <field name="name" readonly="0"/>
+              </group>
+            </group>
+
+            <notebook>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cuenta_pagar_action_window">
+      <field name="name">Cuenta por pagar</field>
+      <field name="res_model">cuenta.pagar</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Contabilidad" id="contabilidad_menu_root" sequence="22"/>
+    
+    <!-- menu categories -->
+    <menuitem name="Análisis Financiero" id="menu_cuentas" parent="contabilidad_menu_root"  sequence="103"/>
+    
+    <menuitem name="Cuentas por pagar" id="menu_cuentas_pagar_datos" parent="menu_cuentas"
+              action="cuenta_pagar_action_window"/>
+
+	</data>
+</openerp>

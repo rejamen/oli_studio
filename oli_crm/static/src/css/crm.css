@@ -1,0 +1,25 @@
+.o_crm_main{
+  /*padding-right: 10px;*/
+}
+
+.o_crm_card{
+  margin-bottom: 4px;
+  position: relative;
+  display: block;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  display: block;
+  border-radius: 4px;
+}
+
+.o_crm_color_0{ /*amarillo*/
+  background-color: #f3f18a;
+}
+
+.o_crm_color_2{ /*blanco*/
+	background-color: #FFFFFF;
+}
+
+

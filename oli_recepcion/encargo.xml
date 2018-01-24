@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <act_window id="realizar_pago_wizard_action"
+            name="Registrar pagos"
+            src_model="encargo.encargo"
+            res_model="realizar.pago.wizard"
+            view_type="form" view_mode="form"
+            key2="client_action_multi" target="new"/>
+
+    <record id="encargos_search" model="ir.ui.view">
+        <field name="name">encargos.search</field>
+        <field name="model">encargo.encargo</field>
+        <field name="arch" type="xml">
+            <search string="encargos">
+                
+                <field name="fecha"/>
+
+                <field name="cliente_id" string="Nombre" filter_domain="['|',('cliente_id.name','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="encargos_list">
+      <field name="name">encargos.list</field>
+      <field name="model">encargo.encargo</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:state == 'draft';gray:state == 'done,archivado';">
+
+          <field name="cliente_id"/>
+          <field name="fecha_entrega"/>
+          <field name="forma_pago"/>
+
+          <field name="importe_mn" sum="Importe MN"/>
+          <field name="importe_cuc" sum="Equivalente CUC"/>
+
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="encargo_form">
+      <field name="name">encargo.form</field>
+      <field name="model">encargo.encargo</field>
+      <field name="arch" type="xml">
+        <form string="encargo" create="true">
+          <header>
+            <div>
+              
+              <field name="state" widget="statusbar"/>
+
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+              <h1><field name="cliente_id" required="1" placeholder="cliente..." nolabel="1" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}"/></h1>
+
+              <field name="company_id" invisible="1"/>
+
+              <group>
+                <group string="Fechas importantes" >
+                  <field name="fecha" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}"/>
+                  <field name="fecha_entrega" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}"/>
+                </group>
+
+                <group string="Modalidad de pago">
+                  <field name="forma_pago" required="1" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}"/>
+                </group>
+              </group>
+
+              <button name="print_contrato" type="object" string="Factura" class="oe_stat_button" icon="fa-print"/>
+
+              <!--TransientModel no funciona correctamente, eliminado en esta version el 
+              pago automatico de los encargos con varios pagos. Por el momento se realiza de forma manual-->
+
+              <!-- <button name="%(realizar_pago_wizard_action)d" type="action" string="Pagar" class="oe_stat_button" icon="fa-dollar" attrs="{'invisible': ['|','|',('forma_pago','=','Pago Unico'),('state','=','done'),('state','=','archivado')]}"/> -->
+
+              <button name="pagar_encargo" type="object" string="Pagar" class="oe_stat_button" icon="fa-dollar" attrs="{'invisible': ['|','|',('forma_pago','=','Varios Pagos'),('state','=','done'),('state','=','archivado')]}"/>
+
+
+              <button name="confirmar" type="object" string="Archivar" class="oe_stat_button" icon="fa-bars" attrs="{'invisible': [('state','=','archivado')]}"/>
+
+
+
+            <notebook>
+              <page string="Línea de pedido">
+                <field name="pedido_line" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}">
+                  <tree editable="top">
+                    <field name="trabajo" required="1"/>
+                    <field name="unidades" required="1"/>
+                    <field name="precio_unidad" required="1"/>
+                    <field name="importe"/>
+                  </tree>
+                </field>
+
+                <group class="oe_subtotal_footer oe_right">
+                  
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="importe_mn"/>
+                  </div>
+                  
+                  <field name="importe_mn" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                  <field name="importe_cuc" readonly="1" class="oe_inline"/>
+
+                
+                </group>
+
+                <div class="oe_clear"/>
+
+
+              </page>
+
+              <page string="Pagos pendientes y realizados" attrs="{'invisible': [('forma_pago',
+                '=','Pago Unico')]}">
+                <field name="pagos_line" attrs="{'readonly': ['|',('state','=','done'),('state','=','archivado')]}">
+                  <tree editable="top">
+                    <field name="fecha" required="1"/>
+                    <field name="importe" required="1"/>
+                    <field name="state" required="1"/>
+                  </tree>
+                </field>
+
+                <field name="flag" invisible="1"/>
+                <group attrs="{'invisible': [('flag','=',False)]}">
+                  <div style="color:red;">** No se corresponde el total especificado en la línea de Pagos pendientes y realizados con el importe total del pedido.</div>
+                </group>
+
+                <group class="oe_subtotal_footer oe_right" attrs="{'invisible': [('flag','=',True)]}">
+                  
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="importe_pagado"/>
+                  </div>
+                  
+                  <field name="importe_pagado" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                  <field name="importe_pendiente" readonly="1" class="oe_inline"/>
+
+                
+                </group>
+
+                <div class="oe_clear"/>
+                
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="encargo_action_window">
+      <field name="name">Encargo</field>
+      <field name="res_model">encargo.encargo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Mis encargos" id="menu_mis_encargos_datos" parent="menu_trabajos"
+              action="encargo_action_window"/>
+
+  </data>
+</openerp>

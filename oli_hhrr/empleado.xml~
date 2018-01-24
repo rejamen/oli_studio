@@ -1,0 +1,128 @@
+<openerp>
+  <data>
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="empleados_list">
+      <field name="name">empleados.list</field>
+      <field name="model">empleado.empleado</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="salario"/>
+        </tree>
+      </field>
+    </record>
+
+    
+    <!-- form view -->
+    <record model="ir.ui.view" id="empleado_form">
+      <field name="name">empleado.form</field>
+      <field name="model">empleado.empleado</field>
+      <field name="arch" type="xml">
+
+          <form string="empleado">
+
+            <header>
+            </header>
+            
+            <sheet>
+
+                  <field name="image" widget='image' class="oe_left oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <label for="salario" class="oe_edit_only"/>
+                            <h1><field name="salario" class="oe_inline"/>%</h1>
+                        </div>
+
+		<notebook>
+			<page string="Pagos pendientes">
+			 <field name="cobros_line">
+				<tree editable="top">
+				  <field name="fecha"/>
+				  <field name="total"/>
+				</tree>
+			 </field>
+
+			<group class="oe_subtotal_footer oe_right">
+		          <div class="oe_subtotal_footer_separator oe_inline">
+		            <label for="total_cobrar"/>
+		          </div>
+
+		          <field name="total_cobrar" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+		        </group>
+
+                	<div class="oe_clear"/>
+
+
+			</page>
+		</notebook>
+
+            
+	    </sheet>
+
+          </form>
+        </field>
+    </record>
+
+
+    <!-- KANBAN VIEW -->
+    <record model="ir.ui.view" id="oli_hr_kanban_view">
+        <field name="name">Empleados Kanban</field>
+        <field name="model">empleado.empleado</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <kanban class="o_hr_employee_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="o_kanban_image">
+                            <img t-att-src="kanban_image('empleado.empleado', 'image', record.id.value)"/>
+                            
+                            <div class="o_employee_summary_icons">
+                            </div>
+                        </div>
+
+                        <div class="oe_kanban_details">
+
+                            <div class="oe_kanban_float_details">
+                              $ <field name="total_cobrar"/>
+                            </div>
+
+                            
+                            <div class="o_kanban_button">
+                                 <!-- <button name="pagar" type="object" class="o_follow_btn o_follow btn btn-sm btn-primary">Pagar</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="empleado_action_window">
+      <field name="name">Empleados</field>
+      <field name="res_model">empleado.empleado</field>
+      <field name="view_mode">kanban,form,tree</field>
+    </record>
+
+    
+    <!-- Top menu item -->
+    <menuitem name="Empleados" id="empleados_menu_root" sequence="20"/>
+    
+    <!-- menu categories -->
+    <menuitem name="Gestionar empleados" id="menu_empleados" parent="empleados_menu_root"  sequence="103"/>
+    
+    <menuitem name="Empleados" id="menu_empleados_datos" parent="menu_empleados"
+              action="empleado_action_window"/>
+
+    
+
+  </data>
+</openerp>

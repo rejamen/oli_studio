@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="balances_search" model="ir.ui.view">
+        <field name="name">balances.search</field>
+        <field name="model">balance.diario</field>
+        <field name="arch" type="xml">
+            <search string="Analisis de esta semana">
+
+              <!-- <field name="name"/> -->
+
+              <!-- <filter name="esta_semana" string="Esta semana"
+                  domain="[('fecha','&lt;',(context_today()+relativedelta(days=7)).strftime('%Y-%m-%d 23:59:59')),('fecha','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/> -->
+
+
+            </search>
+        </field>
+    </record>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="balances_diarios_list">
+      <field name="name">balances.diarios.list</field>
+      <field name="model">balance.diario</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:state == 'draft';gray:state == 'done';">
+
+          <field name="dia_str" string="Día semana"/>
+          <field name="fecha"/>
+          <field name="importe_mn" sum="Importe MN"/>
+          <field name="importe_cuc" sum="Equivalente CUC"/>
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="balance_diario_form">
+      <field name="name">balance.diario.form</field>
+      <field name="model">balance.diario</field>
+      <field name="arch" type="xml">
+        <form string="Balance diario" create="true">
+          <header>
+            <div>
+              
+              <field name="state" widget="statusbar"/>
+
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+              <h1><field name="dia_str"/></h1>
+              <group>
+                <group string="Datos del balance">
+                  <field name="fecha" required="1" attrs="{'readonly': [('state','=', 'done')]}"/>
+                  <field name="fondo_caja" attrs="{'readonly': [('state','=', 'done')]}"/>
+                </group>
+
+                <group string="Ingresos del día">
+                  <field name="total_mn" attrs="{'readonly': [('state','=', 'done')]}"/>
+                  <field name="total_cuc" attrs="{'readonly': [('state','=', 'done')]}"/>
+
+                  <field name="importe_mn" invisible="1"/>
+                  <field name="importe_cuc" invisible="1"/>
+
+                </group>
+              </group>
+
+              <div>
+                <button name="realizar_balance_diario" type="object" string="Analizar" class="oe_stat_button" icon="fa-search" states="draft"/>
+
+                <button name="confirmar" type="object" string="Archivar" class="oe_stat_button" icon="fa-bars" states="draft"/>
+              </div>
+
+              <field name="error" invisible="1"/>
+
+
+            <notebook>
+              <page string="Resultados del balance">
+                <field name="balance_lines"  attrs="{'readonly': [('state','=', 'done')]}">
+                  <tree editable="top" delete="0">
+                    <field name="name" string="Descripción"/>
+                    <field name="descripcion"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="balance_diario_action_window">
+      <field name="name">Balance diario</field>
+      <field name="res_model">balance.diario</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="balances_search"/>
+      <field name="context">{'search_default_esta_semana':1}</field>
+    </record>
+
+    <menuitem name="Balance diario" id="menu_balance_diario_datos" parent="menu_trabajos"
+              action="balance_diario_action_window"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+  	<record id="realizar_pago_wizard_view" model="ir.ui.view">
+        <field name="name">Realizar pago</field>
+        <field name="model">realizar.pago.wizard</field>
+        <field name="arch" type="xml">
+          <form string="Registrar pagos">
+            
+            <group colspan="8">
+              <group colspan="8">
+                <label string="Seleccione el pago a registrar. Puede seleccionar más de uno."/>
+              </group>
+              <group>
+              	
+              	<field name="cliente_id" readonly="1"/>
+                <field name="fecha"/>
+
+
+              </group>
+            </group>
+
+
+              <notebook>
+              	<page string="Pagos pendientes">
+              		<field name="pagos_line">
+              			<tree editable="flase" delete="false" create="false">
+              				<field name="select"/>
+              				<field name="fecha" readonly="1"/>
+                      <field name="importe" readonly="1"/>
+                      <field name="pago_line_id" invisible="1"/>
+              			</tree>
+              		</field>
+
+                  <group class="oe_subtotal_footer oe_right">
+                  
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                      <label for="importe_pendiente"/>
+                    </div>
+                  
+                    <field name="importe_pendiente" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                </group>
+              	</page>
+
+              </notebook>
+      
+            <footer>
+              <button name="pagar" type="object" string="Pagar" class="oe_stat_button" icon="fa-dollar"/>
+            </footer>
+          </form>
+        </field>
+    </record>
+
+    
+
+	</data>
+</openerp>

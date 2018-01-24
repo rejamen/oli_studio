@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="gastos_list">
+      <field name="name">gastos.list</field>
+      <field name="model">gasto.gasto</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:state == 'draft';gray:state == 'done';">
+
+          <field name="fecha"/>
+          <field name="name"/>
+          <field name="importe" sum="Importe"/>
+          <field name="empleado_id"/>
+          <field name="description" string="Descripción"/>
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="gasto_form">
+      <field name="name">gasto.form</field>
+      <field name="model">gasto.gasto</field>
+      <field name="arch" type="xml">
+        <form string="Control de Gastos" create="true">
+          <header>
+            <div>
+              
+              <field name="state" widget="statusbar"/>
+
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+                  
+              <h1><field name="name" placeholder="seleccione un gasto..." nolabel="1" attrs="{'readonly': [('state','=','done')]}"/></h1>
+              <h1>$ <field name="importe" placeholder="importe" nolabel="1" attrs="{'readonly': [('state','=','done')]}" class="oe_inline"/></h1>
+
+            <group>
+              <group string="Datos generales">
+                <field name="empleado_id" attrs="{'readonly': [('state','=','done')]}"/>
+                <field name="fecha" attrs="{'readonly': [('state','=','done')]}"/>
+              </group>
+                
+              <group>
+                <button type="object" name="confirmar" class="oe_stat_button" icon="fa-dollar" string="Confirmar" states="draft"/>
+              </group>
+            </group>
+
+            <field name="description" placeholder="describa brevemente el gasto..." attrs="{'readonly': [('state','=','done')]}"/>
+
+            
+
+            
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="gastos_action_window">
+      <field name="name">Gastos</field>
+      <field name="res_model">gasto.gasto</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- menu categories -->
+    <menuitem name="Control de gastos" id="menu_gastos" parent="contabilidad_menu_root"  sequence="104"/>
+    
+    <menuitem name="Gastos" id="menu_gastos_datos" parent="menu_gastos"
+              action="gastos_action_window"/>
+
+	</data>
+</openerp>

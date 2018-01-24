@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="predefinida1" model="predefinida.predefinida">
+            <field name="name">Impresión Color</field>
+            <field name="costo">5</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida2" model="predefinida.predefinida">
+            <field name="name">Impresión Blanco-Negro</field>
+            <field name="costo">1</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida3" model="predefinida.predefinida">
+            <field name="name">Fotocopia</field>
+            <field name="costo">3</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida4" model="predefinida.predefinida">
+            <field name="name">Scanner</field>
+            <field name="costo">4</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida5" model="predefinida.predefinida">
+            <field name="name">Plasticado tipo carné</field>
+            <field name="costo">5</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida6" model="predefinida.predefinida">
+            <field name="name">Plasticado tipo carta</field>
+            <field name="costo">10</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida7" model="predefinida.predefinida">
+            <field name="name">Encuadernación</field>
+            <field name="costo">50</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida8" model="predefinida.predefinida">
+            <field name="name">Tarjeta de presentación</field>
+            <field name="costo">5</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida9" model="predefinida.predefinida">
+            <field name="name">Fotografía tipo carné, visa y pasaporte</field>
+            <field name="costo">25</field>
+            <field name="control_stock">1</field>
+
+        </record>
+
+        <record id="predefinida10" model="predefinida.predefinida">
+            <field name="name">Restauración foto, documento</field>
+            <field name="costo">50</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida11" model="predefinida.predefinida">
+            <field name="name">Copiar archivos (16 GB)</field>
+            <field name="costo">5</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida12" model="predefinida.predefinida">
+            <field name="name">Copiar archivos (1 TB)</field>
+            <field name="costo">20</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida13" model="predefinida.predefinida">
+            <field name="name">Configurar correo Nauta</field>
+            <field name="costo">25</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida14" model="predefinida.predefinida">
+            <field name="name">Instalar Sistema Operativo en PC</field>
+            <field name="costo">125</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida15" model="predefinida.predefinida">
+            <field name="name">Instalar aplicaciones móviles</field>
+            <field name="costo">125</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida16" model="predefinida.predefinida">
+            <field name="name">Venta Pullover</field>
+            <field name="costo">25</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida17" model="predefinida.predefinida">
+            <field name="name">Venta Jarra</field>
+            <field name="costo">25</field>
+            <field name="control_stock">0</field>
+
+        </record>
+
+        <record id="predefinida18" model="predefinida.predefinida">
+            <field name="name">Venta otros</field>
+            <field name="costo">25</field>
+            <field name="control_stock">0</field>
+        </record>
+
+        <record id="predefinida19" model="predefinida.predefinida">
+            <field name="name">Pago parcial trabajo por encargo</field>
+            <field name="costo">0</field>
+            <field name="control_stock">0</field>
+        </record>
+
+
+    </data>
+
+    
+</openerp>

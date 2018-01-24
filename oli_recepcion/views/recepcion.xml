@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="recepcion assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/oli_recepcion/static/src/css/recepcion.css"/>
+                <script type="text/javascript" src="/oli_recepcion/static/src/js/recepcion.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

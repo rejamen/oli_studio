@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+    <template id="oli_recepcion.contrato_encargo">
+      <t t-call="report.html_container">
+          <t t-foreach="docs" t-as="o">
+              <t>
+                  <div class="page">
+
+                   <!-- <div>
+                      <div style="width:50%;float:left;text-align:left;">
+                        <img t-att-src="'oli_recepcion/static/img/logo.png'" width="96" height="40"/>
+                      </div>
+                    </div> -->
+
+                    <div style="width:10%;float:left;">
+                      <img t-att-src="'oli_recepcion/static/img/logo.png'" width="96" height="40"/>
+                    </div>
+
+                    <div style="width:90%;text-align:center;">
+                      <b>Servicios de Oficina e Informáticos</b> | Telef: <span t-field="o.company_id.phone"/>
+                    </div>
+
+                    <div style="width:10%;float:left;">
+                      
+                    </div>
+
+                    <div style="width:90%;text-align:center;">
+                      <span t-field="o.company_id.street"/> <span t-field="o.company_id.street2"/> <span t-field="o.company_id.city"/> <span t-field="o.company_id.country_id.name"/>
+                    </div>
+
+                    <div style="height:4px;border:1px solid #A0A0A0;border-top:0;border-right:0;border-left:0"></div>
+
+                    <div style="height:45px;"/>
+
+                    
+
+                    <div style="font-weight:bold;text-align:center;font-size:16;">FACTURA DE SERVICIOS</div>
+
+                    <div style="height:20px;"/>
+
+                    <div style="width:50%;float:left;text-align:left;"><b>Cliente:   </b><span t-field="o.cliente_id.name"/> </div>
+                    <div style="width:50%;float:left;text-align:right;"><b>Forma de pago:   </b><span t-field="o.forma_pago"/> </div>
+
+
+                    <div style="height:45px;"/>
+
+
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th><strong>Servicio</strong></th>
+                            <th class="text-center"><strong>Unidades</strong></th>
+                            <th class="text-center"><strong>Precio unidad (CUP)</strong></th>
+                            <th class="text-center"><strong>Importe (CUP)</strong></th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>
+                        <tr t-foreach="o.pedido_line" t-as="line">
+                            <td>
+                                <span t-field="line.trabajo"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.unidades"/>
+                            </td>
+                            <td class="text-center">
+                                $<span t-field="line.precio_unidad"/>
+                            </td>
+                            <td class="text-center">
+                                $<span t-field="line.importe"/>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+            <div class="row">
+                <div class="col-xs-4 pull-right">
+                    <table class="table table-condensed">
+                        <tr class="border-black">
+                            <td><strong>Total (CUP): </strong></td>
+                            <td class="text-right">
+                                $<span style="font-size:14;font-weight:bold;" t-field="o.importe_mn"/>
+                            </td>
+                        </tr>
+                        
+                        <tr class="border-black">
+                            <td style="color:white;">_</td>
+                            <td style="color:white;">_</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+                    <div style="height:30px;"/>
+                    <div t-if="o.forma_pago == 'Varios Pagos'" style="font-weight:bold;text-align:center;font-size: 14;">FACILIDADES DE PAGO</div>
+
+
+                    <table t-if="o.forma_pago == 'Varios Pagos'" class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th><strong>Fecha</strong></th>
+                            <th class="text-center"><strong>Importe</strong></th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody>
+                        <tr t-foreach="o.pagos_line" t-as="line">
+                            <td>
+                                <span t-field="line.fecha"/>
+                            </td>
+                            <td class="text-center">
+                                $<span t-field="line.importe"/>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+                    <div style="height:160px;"/>
+
+                    <div style="width:15%;float:left;">
+                      <b>Entregado:</b>
+                    </div>
+                    <div style="width:50%;float:left;">
+                      <span>YANEL GARCIA CASTILLO</span>
+                    </div>
+
+                    <div style="width:35%;float:left;">
+                      <b>No. de Patente:</b> <span t-field="o.company_id.company_registry"/>
+                    </div>
+
+                    <div style="height:50px;"/>
+
+
+
+                    <div style="width:15%;float:left;">
+                      Firma
+                    </div>
+                    <div style="width:85%;float:left;">
+                      ____________________
+                    </div>
+
+
+                    <div style="height:80px;"/>
+
+
+                     
+
+
+                    <div style="width:15%;float:left;">
+                      <b>Recibido:</b>
+                    </div>
+                    <div style="width:85%;float:left;">
+                      ___________________________________________________________________
+                    </div>
+
+                    <div style="height:50px;"/>
+
+
+
+                    <div style="width:15%;float:left;">
+                      Firma
+                    </div>
+                    <div style="width:50%;float:left;">
+                      ____________________
+                    </div>
+
+                    <div style="width:35%;float:left;">
+                      <b>Fecha:</b> <span t-field="o.fecha"/>
+                    </div>
+
+
+                    <!-- <div style="width:15%;float:left;">
+                      Firma
+                    </div>
+                    <div style="width:15%;border:1px solid rgba(0, 0, 0, 0.4);border-top:0;border-right:0;border-left:0;">
+                    </div> -->
+
+
+                  </div>
+              </t>
+          </t>
+      </t>
+    </template>
+
+
+	</data>
+</openerp>

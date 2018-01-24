@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <!-- Plazos de pago -->
+        <record id="seguimiento_verde" model="plazo.pago">
+            <field name="sequence">1</field>
+            <field name="color">0</field>
+            <field name="name">Corto Plazo</field>
+            <field name="case_default" eval="True"/>
+        </record>
+
+        <record id="seguimiento_naranja" model="plazo.pago">
+            <field name="sequence">10</field>
+            <field name="color">1</field>
+            <field name="name">Mediano Plazo</field>
+            <field name="case_default" eval="True"/>
+        </record>
+
+        <record id="seguimiento_azul" model="plazo.pago">
+            <field name="sequence">11</field>
+            <field name="color">3</field>
+            <field name="name">Largo Plazo</field>
+            <field name="case_default" eval="True"/>
+        </record>
+
+    </data>
+
+    
+</openerp>

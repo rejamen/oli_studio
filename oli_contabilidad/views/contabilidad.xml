@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="contabilidad assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/oli_contabilidad/static/src/css/contabilidad.css"/>
+                <script type="text/javascript" src="/oli_contabilidad/static/src/js/contabilidad.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

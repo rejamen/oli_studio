@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="notas_search" model="ir.ui.view">
+        <field name="name">notas.search</field>
+        <field name="model">nota.nota</field>
+        <field name="arch" type="xml">
+            <search string="Notas">
+
+              <field name="name"/>
+              <field name="fecha"/>
+
+
+            </search>
+        </field>
+    </record>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="notas_list">
+      <field name="name">notas.list</field>
+      <field name="model">nota.nota</field>
+      <field name="arch" type="xml">
+        <tree create="true">
+
+          <field name="fecha"/>
+          <field name="name"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="nota_form">
+      <field name="name">nota.form</field>
+      <field name="model">nota.nota</field>
+      <field name="arch" type="xml">
+        <form string="Nota" create="true">
+          <header>
+            <div>
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+                  
+              <h1><field name="name" required="1" placeholder="descripción..." nolabel="1"/></h1>
+              <field name="fecha"/>
+
+              <div style="height:5px;">**Adicione cualquier comentario, incidencia, aclaración, etc; que estime conveniente registrar por fecha.</div>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="notas_action_window">
+      <field name="name">Notas</field>
+      <field name="res_model">nota.nota</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- menu categories -->
+    <menuitem name="Notas y aclaraciones" id="menu_notas" parent="recepcion_menu_root"  sequence="104"/>
+    
+    <menuitem name="Mis notas" id="menu_mis_notas_datos" parent="menu_notas"
+              action="notas_action_window"/>
+
+  </data>
+</openerp>

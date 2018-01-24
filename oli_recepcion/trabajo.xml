@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="trabajos_search" model="ir.ui.view">
+        <field name="name">trabajos.search</field>
+        <field name="model">trabajo.trabajo</field>
+        <field name="arch" type="xml">
+            <search string="Trabajos">
+
+              <field name="name"/>
+
+              <filter name="trabajos_hoy" string="Trabajos de HOY"
+                  domain="[('fecha', '=', context_today().strftime('%%d-%%m-%%Y'))]"/>
+
+
+
+            </search>
+        </field>
+    </record>
+    
+    <!-- list view -->
+    <record model="ir.ui.view" id="trabajos_list">
+      <field name="name">trabajos.list</field>
+      <field name="model">trabajo.trabajo</field>
+      <field name="arch" type="xml">
+        <tree create="true" colors="blue:state == 'draft';gray:state == 'done';">
+
+          <field name="name"/>
+          <field name="importe_mn" sum="Importe MN"/>
+          <field name="importe_cuc" sum="Equivalente CUC"/>
+
+          <field name="total_propina" sum="Total propinas"/>
+          <field name="fecha"/>
+          <field name="tipo_trabajo"/>
+
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- form view -->
+    <record model="ir.ui.view" id="trabajoo_form">
+      <field name="name">trabajo.form</field>
+      <field name="model">trabajo.trabajo</field>
+      <field name="arch" type="xml">
+        <form string="Trabajo" create="true">
+          <header>
+            <div>
+              
+              <field name="state" widget="statusbar"/>
+
+            </div>
+            <div class="oe_clear"/>
+          </header>
+
+          <sheet>
+            <!-- <div><button name="header_button" type="object" class="oe_seguimiento_header_verde" attrs="{'invisible': [('alerta','=',True)]}"/></div>
+
+            <div><button name="header_button" type="object" class="oe_seguimiento_header_rojo" attrs="{'invisible': [('alerta','=',False)]}"/></div> -->
+                  
+              <h1><field name="name" required="1" placeholder="nombre del trabajo" nolabel="1" on_change="onchange_name(name)" attrs="{'readonly': [('state','=','done')]}"/></h1>
+              <h1><field name="unidades" nolabel="1" class="oe_inline" attrs="{'readonly': [('state','=','done')]}"/> * $ <field name="costo" placeholder="costo MN" nolabel="1" class="oe_inline" attrs="{'readonly': [('state','=','done')]}"/> MN  =  $ <field name="importe_mn" placeholder="importe MN" nolabel="1" class="oe_inline"/> MN (<field name="importe_cuc" class="oe_inline" nolabel="1"/> CUC)</h1>
+
+              <div>
+                <field name="propina" class="oe_inline" attrs="{'readonly': [('state','=','done')]}"/>Propina
+                <field name="total_propina" class="oe_inline" attrs="{'invisible': [('propina',
+                  '=',False)], 'required': [('propina','=',True)], 'readonly': [('state','=','done')]}"/>
+              </div>
+
+              <group>
+                <group string="Otros datos">
+                  <field name="cliente" attrs="{'readonly': [('state','=','done')]}"/>
+                  <field name="control_stock" attrs="{'readonly': [('state','=','done')]}"/>
+                </group>
+
+                <group string="Plazo de entrega">
+                  <field name="tipo_trabajo" required="1" attrs="{'readonly': [('state','=','done')]}"/>
+		  <field name="fecha" required="1" attrs="{'readonly': [('state','=','done')]}"/>
+                </group>
+              </group>
+
+
+            <notebook>
+              <page string="Productos usados" attrs="{'invisible': [('control_stock',
+                '=',False)]}" autofocus="autofocus">
+                <field name="materiales_line" attrs="{'readonly': [('state','=','done')]}">
+                  <tree editable="top">
+                    <field name="producto_id"/>
+                    <field name="cantidad"/>
+                    <field name="costo"/>
+                  </tree>
+                </field>
+                
+                <group class="oe_subtotal_footer oe_right">
+                  <div class="oe_subtotal_footer_separator oe_inline">
+                    <label for="costo_materiales"/>
+                  </div>
+
+                  <field name="costo_materiales" readonly="1" nolabel="1" class="oe_subtotal_footer_separator"/>
+
+                </group>
+
+                <div class="oe_clear"/>
+
+
+              </page>
+
+              <page string="Aclaraciones o notas pertinentes">
+                <field name="notas_line" attrs="{'readonly': [('state','=','done')]}">
+                  <tree editable="top">
+                    <field name="name"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    
+    <record model="ir.actions.act_window" id="trabajo_action_window">
+      <field name="name">Trabajo</field>
+      <field name="res_model">trabajo.trabajo</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="trabajos_search"/>
+      <field name="context">{'search_default_trabajos_hoy':1}</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Recepción" id="recepcion_menu_root" sequence="20"/>
+
+
+    <!-- menu categories -->
+    <menuitem name="Trabajos realizados" id="menu_trabajos" parent="recepcion_menu_root"  sequence="103"/>
+    
+    <menuitem name="Configuración" id="configuracion_menu" parent="recepcion_menu_root" sequence="105"/>
+
+    
+    <menuitem name="Mis trabajos" id="menu_mis_trabajos_datos" parent="menu_trabajos"
+              action="trabajo_action_window"/>
+
+  </data>
+</openerp>

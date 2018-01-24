@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+        <record id="tasa1" model="tasa.cambiaria">
+            <field name="cup">25</field>
+        </record>
+
+    </data>
+
+    
+</openerp>
